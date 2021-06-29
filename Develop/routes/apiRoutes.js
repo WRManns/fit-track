@@ -1,6 +1,8 @@
+// Dependency on the workout model
 const Workout = require("../models/workout")
 
 module.exports = function (app) {
+    //Get function for the workout
     app.get("/api/workouts", function(req, res) {
         Workout.find()
             .then(data => {
@@ -10,7 +12,7 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
-
+    //Post function for the workouts
     app.post("/api/workouts", function(req, res) {
         Workout.create({})
             .then(data => res.json(data))
@@ -19,7 +21,7 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
-
+    //Allows the updating of the DB of new workouts
     app.put("/api/workouts/:id", ({body, params}, res) => {
         Workout.findByIdAndUpdate(
             params.id,

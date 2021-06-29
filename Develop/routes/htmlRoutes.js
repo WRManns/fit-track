@@ -1,5 +1,7 @@
+//Dependency for establishing the html path
 var path = require("path");
 
+//Linking the HTML documents
 module.exports = function (app){
     
     app.get("/exercise", function (req,res){

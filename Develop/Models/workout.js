@@ -1,6 +1,8 @@
+//Model dependencies
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//Building the Schema for the workouts
 const workoutSchema = new Schema(
     {
         day: {
@@ -45,6 +47,8 @@ const workoutSchema = new Schema(
     }
 );
 
+//Allows for the dynamic updating of the excercises/workouts
+//And adds onto the total workout stats
 workoutSchema.virtual("totalDuration").get(function() {
     return this.exercises.reduce((total, exercise) => {
         return total + exercise.duration;
@@ -52,5 +56,5 @@ workoutSchema.virtual("totalDuration").get(function() {
 });
 
 const Workout = mongoose.model("Workout", workoutSchema);
-
+//Gotta export it if you wanna use it
 module.exports = Workout;
